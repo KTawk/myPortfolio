@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kairly’s Portfolio</title>
+  <!-- Google Fonts: Playfair Display for heading, Lato for body/nav/text -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark-bg: #0f1630;
+      --light-bg: #ffffff;
+      --accent: #ffc85c;
+      --text-light: #ffffff;
+      --text-dark: #111827;
+      --nav-bg: rgba(255,255,255,0.95);
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Lato', sans-serif;
+      --max-width: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; }
+    header {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 2rem);
+      max-width: var(--max-width);
+      background-color: transparent;
+      border-radius: 12px;
+      padding: 0.5rem 0;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 999;
+    }
+    header.scrolled {
+      background-color: var(--nav-bg);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+    }
+    .logo {
+      font-family: var(--font-body);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      transition: color 0.3s ease;
+    }
+    header.scrolled .logo { color: var(--text-dark); }
+    nav a {
+      margin-left: 2rem;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-light);
+      text-transform: lowercase;
+      transition: color 0.3s ease;
+    }
+    header.scrolled nav a { color: var(--text-dark); }
+    nav a:hover { color: var(--accent); }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2rem;
+      padding-top: 5rem;
+    }
+    .intro {
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .intro p {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 30ch;
+      margin: 0 auto;
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .scroll-indicator .dot {
+      background-color: var(--accent);
+      border-radius: 50%;
+      animation: scroll-dot 1.8s infinite ease-in-out;
+    }
+    .scroll-indicator .dot:nth-child(1) { width: 20px; height: 20px; }
+    .scroll-indicator .dot:nth-child(2) { width: 14px; height: 14px; }
+    .scroll-indicator .dot:nth-child(3) { width: 8px;  height: 8px; }
+    @keyframes scroll-dot {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(12px); }
+    }
+    /* How I Work Section */
+    .how-i-work {
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      padding: 4rem 2rem 8rem; 
+      text-align: center;
+    }
+    .how-i-work h2 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+    .how-i-work p {
+      max-width: 700px;
+      margin: 1rem auto;
+      font-size: 1.25rem;
+      line-height: 1.8;
+    }
+    .projects {
+      background-color: var(--light-bg);
+      padding: 8rem 2rem 2rem; 
+      padding-top: 0;
+      color: var(--text-dark);
+      flex: 1;
+    }
+    .project-card {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .project-card img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      display: block;
+    }
+    .project-info {
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .project-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    
+    .project-info h2 a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .project-info h2 a:hover {
+      text-decoration: underline;
+    }
+    .project-info span {
+      font-size: .875rem;
+      font-weight: 400;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    footer {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .875rem;
+    }
+    footer a {
+      color: var(--accent);
+      margin: 0 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Contact Section */
+.contact-section {
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+  padding: 4rem 2rem;
+  
+}
+.contact-section h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent);
+  text-align: center;
+}
+.contact-section .content {
+  display: flex;
+  justify-content: center;
+}
+.contact-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 550px;
+  width: 100%;
+}
+.contact-section input,
+.contact-section textarea {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.contact-section button {
+  padding: 0.75rem;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.contact-section button:hover {
+  background-color: #e6b14a;
+}
+
+    @media (max-width: 768px) {
+      header { top: 0.5rem; width: calc(100% - 1rem); }
+      .container { padding: 0.75rem 1rem; }
+      nav a { margin-left: 1rem; font-size: 0.875rem; }
+      .hero { flex-direction: column; padding-top: 4rem; }
+      .scroll-indicator { bottom: 20%; }
+      .how-i-work { padding: 2rem 1rem; }
+      .how-i-work h2 { font-size: 2rem; }
+      .how-i-work p { margin: 0.75rem auto; font-size: 1.1rem; }
+      .projects { padding: 2rem 1rem; }
+      .project-card { max-width: 95%; }
+      .project-card img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">KT</div>
+      <nav>
+        <a href="#work">work</a>
+        <a href="about.html">about</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="intro">
+      <h1>Hi, I’m Kairly.</h1>
+      <p>I’m a Software Engineering student at uOttawa building inclusive apps & gadgets. I turn big ideas into clean, reliable code.</p>
+    </div>
+  </section>
+
+  <div class="scroll-indicator">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- How I Work Section -->
+  <section id="work" class="how-i-work">
+    <h2>How I Work</h2>
+    <p>I start every project by clarifying user needs and goals. I talk with stakeholders or end users, jot down their pain points, and turn those insights into clear requirements. Then I sketch quick wireframes, basic layouts that map out buttons, menus, and content areas without any styling, so everyone agrees on the structure before we write any code.</p>
+    <p>Next, I build the functionality step by step. I break work into small tasks, write clean maintainable code with consistent naming, and add automated tests to catch regressions early. I use Git and GitHub to collaborate, open issues to track progress, and hold short check ins with stand ups or async updates to stay aligned on scope and blockers.</p>
+    <p>Finally, I deploy and learn. I share early beta builds, monitor real user feedback and metrics, then refine the experience in quick cycles. I’m also always learning, right now in SEG 3125 studying UI design, and I keep up with Nielsen Norman Group articles (nngroup.com) to keep my techniques fresh.</p>
+  </section>
+
+  <section id="work" class="projects">
+    <h2 class="section-title" style="font-family: var(--font-heading); font-size: 2.5rem; text-align: center; margin-bottom: 2rem; color: var(--text-dark);">Case Studies</h2>
+    
+    <div class="project-card">
+      <img src="https://via.placeholder.com/700x300.png?text=Service+Site" alt="Service Site">
+      <div class="project-info">
+        <h2><a href="service.html">Service Site</a></h2>
+        <span>Category, Role</span>
+      </div>
+    
+    </div>
+    <div class="project-card">
+      <img src="https://via.placeholder.com/700x300.png?text=Small+Game" alt="Small Game">
+      <div class="project-info">
+        <h2><a href="smallGame.html">Small Game</a></h2>
+        <span>Category, Role</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://via.placeholder.com/700x300.png?text=e-Commerce+Site" alt="e-Commerce Site">
+      <div class="project-info">
+        <h2><a href="eCommerce.html">e-Commerce Site</a></h2>
+        <span>Category, Role</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <img src="https://via.placeholder.com/700x300.png?text=e-Commerce+Site" alt="e-Commerce Site">
+      <div class="project-info">
+        <h2><a href = "analytics.html">Analytics Site</a></h2>
+        <span>Category, Role</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simplified Contact Section -->
+  <section id="contact" class="contact-section">
+    <h2>Get in Touch</h2>
+    <div class="content">
+      <form action="mailto:kairly.tauk@outlook.com" method="POST" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Your Name" required />
+        <input type="email" name="Email" placeholder="Your Email" required />
+        <textarea name="Message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Kairly Tawk</p>
+    <p>
+      <a href="mailto:kairly.tauk@outlook.com">Email</a>|
+      <a href="https://github.com/KTawk">GitHub</a>|
+      <a href="https://linkedin.com/in/kairly">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    (function() {
+      // Change nav background only after scrolling past the hero section
+      const navHeader   = document.querySelector('header');
+      const heroSection = document.querySelector('.hero');
+      window.addEventListener('scroll', function() {
+        navHeader.classList.toggle('scrolled', window.scrollY > heroSection.offsetHeight);
+      });
+    })();
+  </script>
+</body>
+</html>

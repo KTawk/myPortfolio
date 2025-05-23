@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About • Kairly’s Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark-bg: #0f1630;
+      --light-bg: #ffffff;
+      --accent: #ffc85c;
+      --text-light: #ffffff;
+      --text-dark: #111827;
+      --nav-bg: rgba(255,255,255,0.95);
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Lato', sans-serif;
+      --max-width: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; }
+    header {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 2rem);
+      max-width: var(--max-width);
+      background-color: transparent;
+      border-radius: 12px;
+      padding: 0.5rem 0;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+    }
+    header.scrolled {
+      background-color: var(--nav-bg);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .logo { font-family: var(--font-body); font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+    nav a { margin-left: 2rem; font-size: 1rem; font-weight: 400; color: var(--text-light); }
+    nav a:hover { color: var(--accent); }
+    .hero {
+      margin-top: 8rem; /* increased spacing from fixed header */
+      padding: 2rem 1rem;
+      /* removed center alignment to allow left-aligned text */
+    }
+    .hero img {
+      max-width: 250px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+    .hero p {
+      max-width: 700px;
+      margin: 1rem auto;
+      font-size: 1rem; /* reduced font size */
+      line-height: 1.6;
+      color: var(--text-light);
+    }
+    footer {
+      margin-top: auto;
+      padding: 2rem 1rem;
+      font-size: .875rem;
+      text-align: center;
+      color: var(--text-light);
+    }
+    @media (max-width: 768px) {
+      header { width: calc(100% - 1rem); padding: 0.5rem 1rem; }
+      .hero img { max-width: 180px; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">KT</div>
+    <nav>
+      <a href="index.html">work</a>
+      <a href="about.html">about</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner" style="display:flex; width:100%; max-width:var(--max-width); margin:5rem auto 2rem; padding:0;">
+      <!-- Replace src with your actual photo path -->
+      <img src="kairly-photo.jpg" alt="Kairly smiling" style="width:50%; max-width:400px; height:auto; object-fit:cover; border-radius:50%;" />
+      <div class="hero-content" style="text-align: left;">
+        <h1 style="font-family:var(--font-heading); font-size:3rem; color:var(--text-light); margin-bottom:1rem;">Hey, I’m Kairly!</h1>
+        <p style="font-size:1.25rem; line-height:1.6; color:var(--text-light); margin-bottom:1rem;">I’m currently based in Ottawa, where I’m pursuing a Bachelor’s in Software Engineering at the University of Ottawa. I’m passionate about designing inclusive digital and hardware solutions that empower people of all abilities. I’m committed to continuous learning and making a meaningful impact.</p>
+        <p style="font-size:1.25rem; line-height:1.6; color:var(--text-light); margin-bottom:1rem;">My latest project was prototyping a Bluetooth integrated mouse click button for a wheelchair user with limited hand dexterity. That device won top honours at UOttawa’s Engineering Design Day.</p>
+        <p style="font-size:1.25rem; line-height:1.6; color:var(--text-light);">When I’m not coding, you’ll find me carving fresh powder on my snowboard or unwinding at the piano. I love travelling to explore the beauty of the world and spreading positivity wherever I go. I also enjoy swimming and taking early morning walks when everything is still quiet.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Kairly Tauk
+  </footer>
+
+  <script>
+    (function() {
+      const navHeader = document.querySelector('header');
+      const heroSec   = document.querySelector('.hero');
+      window.addEventListener('scroll', () => {
+        navHeader.classList.toggle('scrolled', window.scrollY > heroSec.offsetHeight);
+      });
+    })();
+  </script>
+</body>
+</html>
